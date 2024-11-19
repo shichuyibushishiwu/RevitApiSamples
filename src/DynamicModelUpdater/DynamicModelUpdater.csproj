@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Revit_API_x64" Version="2020.0.0" />
+	  <PackageReference Include="Tuna.Revit.Extension" Version="2020.0.18" />
 	</ItemGroup>
 
 </Project>

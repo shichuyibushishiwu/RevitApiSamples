@@ -51,6 +51,4 @@ public class App : IExternalApplication
 
         return Result.Succeeded;
     }
-
-
 }

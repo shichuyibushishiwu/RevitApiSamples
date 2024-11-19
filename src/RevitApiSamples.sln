@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-外部事件", "01-外部事件", "{06384717-1411-474F-9BDF-B348452C87E0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{06384717-1411-474F-9BDF-B348452C87E0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevitExternalEvent", "RevitExternalEvent\RevitExternalEvent.csproj", "{46A34119-48E1-4F4C-8386-5A8C53E01C6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicModelUpdater", "DynamicModelUpdater\DynamicModelUpdater.csproj", "{6C423996-5799-4DFF-B4CA-6D9777C80881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicModelUpdater", "DynamicModelUpdater\DynamicModelUpdater.csproj", "{6C423996-5799-4DFF-B4CA-6D9777C80881}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
