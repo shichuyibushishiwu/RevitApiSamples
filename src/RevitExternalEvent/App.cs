@@ -16,43 +16,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using Tuna.Revit.Extension;
 
-namespace RevitExternalEvent
+namespace RevitExternalEvent;
+
+public class App : IExternalApplication
 {
-    public class App : IExternalApplication
+    internal const string _tabName = "Shiwu";
+
+    internal static App? Current;
+
+    internal Tuna.Revit.Extension.IExternalEventService? _service;
+
+    public Result OnShutdown(UIControlledApplication application)
     {
-        internal const string _tabName = "Shiwu";
-
-        internal static App? Current;
-
-        internal Services.ExternalEventService? _service;
-
-        public Result OnShutdown(UIControlledApplication application)
-        {
-            return Result.Succeeded;
-        }
-
-        public Result OnStartup(UIControlledApplication application)
-        {
-            Current = this;
-            _service=new Services.ExternalEventService();
-
-            application.CreateRibbonTab(_tabName);
-            RibbonPanel ribbonPanel = application.CreateRibbonPanel(_tabName, "测试");
-            var type = typeof(Command.ModelessCommand);
-            PushButtonData button = new PushButtonData("modeless", "非模态", type.Assembly.Location, type.FullName);
-            button.LargeImage = ConvertToBitmapSource(Properties.Resources.Discover);
-            ribbonPanel.AddItem(button);
-            return Result.Succeeded;
-        }
-
-        public BitmapSource ConvertToBitmapSource(System.Drawing.Bitmap bitmap)
-        {
-            return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                bitmap.GetHbitmap(),
-                IntPtr.Zero,
-                Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions());
-        }
+        return Result.Succeeded;
     }
+
+    public Result OnStartup(UIControlledApplication application)
+    {
+        Current = this;
+        _service = new Tuna.Revit.Extension.ExternalEventService();
+
+        IRibbonTab ribbonTab = application.AddRibbonTab(_tabName);
+        ribbonTab.AddRibbonPanel("测试", panel =>
+        {
+            panel.AddPushButton<Command.ModelessCommand>(data =>
+            {
+                data.Title = "非模态";
+                data.LargeImage = Properties.Resources.Discover;
+            });
+        });
+
+
+        return Result.Succeeded;
+    }
+
+
 }
